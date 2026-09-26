@@ -1,0 +1,168 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"name": "Base",
+					"slug": "base",
+					"color": "#FFFFFF"
+				},
+				{
+					"name": "Contrast",
+					"slug": "contrast",
+					"color": "#16202A"
+				},
+				{
+					"name": "Metro Aqua",
+					"slug": "accent-1",
+					"color": "#0B6E75"
+				},
+				{
+					"name": "Aqua Tint",
+					"slug": "accent-2",
+					"color": "#EAF5F5"
+				},
+				{
+					"name": "Auto Orange",
+					"slug": "accent-3",
+					"color": "#B45309"
+				},
+				{
+					"name": "Muted",
+					"slug": "accent-4",
+					"color": "#56626B"
+				},
+				{
+					"name": "Surface",
+					"slug": "accent-5",
+					"color": "#F5F7F7"
+				},
+				{
+					"name": "Hairline",
+					"slug": "accent-6",
+					"color": "color-mix(in srgb, currentColor 18%, transparent)"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1200px"
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"name": "System Sans",
+					"slug": "system-sans",
+					"fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans\", Ubuntu, Cantarell, \"Helvetica Neue\", Arial, sans-serif"
+				},
+				{
+					"name": "System Mono",
+					"slug": "system-mono",
+					"fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, \"Liberation Mono\", monospace"
+				}
+			]
+		}
+	},
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|system-sans",
+			"fontSize": "var:preset|font-size|medium",
+			"fontWeight": "400",
+			"lineHeight": "1.65",
+			"letterSpacing": "0"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-sans",
+					"fontWeight": "700",
+					"letterSpacing": "-0.01em",
+					"lineHeight": "1.25"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var:preset|font-size|large"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "1.15rem"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|accent-1"
+				},
+				"typography": {
+					"textDecoration": "underline"
+				},
+				":hover": {
+					"typography": {
+						"textDecoration": "none"
+					}
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var:preset|color|accent-1",
+					"text": "var:preset|color|base"
+				},
+				":hover": {
+					"color": {
+						"background": "var:preset|color|contrast",
+						"text": "var:preset|color|base"
+					}
+				}
+			}
+		},
+		"blocks": {
+			"core/code": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-mono"
+				}
+			},
+			"core/site-title": {
+				"typography": {
+					"fontWeight": "800",
+					"fontSize": "var:preset|font-size|large"
+				},
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var:preset|color|contrast"
+						},
+						"typography": {
+							"textDecoration": "none"
+						}
+					}
+				}
+			},
+			"core/navigation": {
+				"typography": {
+					"fontSize": "var:preset|font-size|small",
+					"fontWeight": "600"
+				},
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						}
+					}
+				}
+			},
+			"core/post-title": {
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var:preset|color|contrast"
+						}
+					}
+				}
+			}
+		},
+		"css": ".kpg-header{border-bottom:1px solid var(--wp--preset--color--accent-6);padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)}.kpg-main{margin-top:var(--wp--preset--spacing--50);margin-bottom:var(--wp--preset--spacing--70)}.kpg-footer{background:var(--wp--preset--color--accent-5);padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--40);font-size:var(--wp--preset--font-size--small)}.kpg-footer-legal{color:var(--wp--preset--color--accent-4);margin-top:var(--wp--preset--spacing--50)}.kpg-meta{color:var(--wp--preset--color--accent-4);font-size:var(--wp--preset--font-size--small);gap:.35em}.kpg-meta p{margin:0}.kpg-author-box{background:var(--wp--preset--color--accent-2);border-radius:8px;padding:1.25rem;margin-top:var(--wp--preset--spacing--60)}.kpg-guide-list .wp-block-post{border-bottom:1px solid var(--wp--preset--color--accent-6);padding:1.25rem 0}.kpg-guide-list .wp-block-post-title{margin-top:0}.rank-math-breadcrumb{font-size:var(--wp--preset--font-size--small);color:var(--wp--preset--color--accent-4)}.rank-math-breadcrumb p{margin:0 0 1rem}.wp-block-table table{border-collapse:collapse}.wp-block-table th,.wp-block-table td{border:1px solid var(--wp--preset--color--accent-6);padding:.5em .75em}.wp-block-table thead{background:var(--wp--preset--color--accent-2)}.wp-block-term-description{font-size:1.05rem}.wp-block-term-description p{margin-bottom:1em}.kpg-quick-answer{background:var(--wp--preset--color--accent-2);border-left:4px solid var(--wp--preset--color--accent-1);border-radius:6px;padding:1rem 1.25rem;margin-bottom:var(--wp--preset--spacing--50)}.kpg-quick-answer p{margin:.25em 0}#rank-math-faq{margin-top:var(--wp--preset--spacing--40)}.rank-math-list-item{border-top:1px solid var(--wp--preset--color--accent-6);padding:.9rem 0}.rank-math-question{margin:0 0 .35rem;font-size:1.05rem}.rank-math-answer p{margin:0}.kpg-published time::before{content:\"· Published \"}.kpg-updated time::before{content:\"· Updated \"}"
+	}
+}

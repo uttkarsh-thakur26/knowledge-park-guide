@@ -1,0 +1,14 @@
+# Secrets and machine-specific settings
+server/.env
+
+# Server command logs (kept locally)
+server/logs/
+
+# Personal files
+content/images/
+
+# Database and uploads backups (contain user data)
+backups/
+
+# Python
+__pycache__/

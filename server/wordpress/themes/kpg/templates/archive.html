@@ -1,0 +1,37 @@
+<!-- wp:template-part {"slug":"header","tagName":"div"} /-->
+
+<!-- wp:group {"tagName":"main","className":"kpg-main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group kpg-main">
+	<!-- wp:shortcode -->
+[rank_math_breadcrumb]
+	<!-- /wp:shortcode -->
+
+	<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
+
+	<!-- wp:term-description /-->
+
+	<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"kpg-guide-list"} -->
+	<div class="wp-block-query kpg-guide-list">
+		<!-- wp:post-template -->
+			<!-- wp:post-title {"level":2,"isLink":true,"fontSize":"large"} /-->
+			<!-- wp:post-excerpt {"excerptLength":30} /-->
+			<!-- wp:post-date {"format":"j M Y","fontSize":"small"} /-->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>The first guides in this section are being checked on the ground and will appear here soon.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"div"} /-->

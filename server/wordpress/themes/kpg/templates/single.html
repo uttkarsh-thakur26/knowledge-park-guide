@@ -1,0 +1,34 @@
+<!-- wp:template-part {"slug":"header","tagName":"div"} /-->
+
+<!-- wp:group {"tagName":"main","className":"kpg-main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group kpg-main">
+	<!-- wp:shortcode -->
+[rank_math_breadcrumb]
+	<!-- /wp:shortcode -->
+
+	<!-- wp:post-title {"level":1} /-->
+
+	<!-- wp:group {"className":"kpg-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+	<div class="wp-block-group kpg-meta">
+		<!-- wp:paragraph -->
+		<p>By</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:post-author-name {"isLink":false} /-->
+		<!-- wp:post-date {"format":"j M Y","className":"kpg-published"} /-->
+		<!-- wp:post-date {"displayType":"modified","format":"j M Y","className":"kpg-updated"} /-->
+		<!-- wp:paragraph -->
+		<p>· in</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:post-terms {"term":"category"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:post-featured-image {"aspectRatio":"16/9"} /-->
+
+	<!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+
+	<!-- wp:post-author {"showAvatar":true,"showBio":true,"byline":"Written by","className":"kpg-author-box"} /-->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"div"} /-->
