@@ -37,7 +37,7 @@ cat ~/.ssh/kpg_azure.pub
 | | Image | **Ubuntu Server 24.04 LTS - x64 Gen2** |
 | | Size | **Standard_B2ats_v2** (2 vCPU, 1 GiB). It must show **"Free services eligible"**. If it's unavailable, use Standard_B1s. **Do not pick anything bigger** |
 | | Authentication | SSH public key · Username `<KPG_USER>` · "Use existing public key" → paste `kpg_azure.pub` |
-| | Inbound ports | Allow **SSH (22), HTTP (80), HTTPS (443)** |
+| | Inbound ports | Allow **SSH (22), HTTP (80), HTTPS (443)**. HTTP/HTTPS are narrowed to Cloudflare's IP ranges in Part E once the proxy is live |
 | Disks | OS disk | **Premium SSD (LRS)**, size **64 GiB (P6)** · ✅ Delete with VM. The free services include 2 × P6 64 GB disks, so exactly P6 is free |
 | Networking | Public IP | New (default, Standard = static) · ✅ Delete public IP and NIC when VM is deleted |
 | Management | **Auto-shutdown** | **OFF.** A website must stay up 24/7 |
@@ -190,6 +190,27 @@ Let's Encrypt no longer emails expiry warnings. The snap timer shown above is wh
 - Caching → Tiered Cache → **Smart Tiered Cache: On**
 - *Not yet:* Cache Rules, Rocket Loader, WordPress cache plugins. These are Milestone II optimizations, so the "before" PageSpeed test must run without them.
 - Report note: Cloudflare **removed Auto Minify on 5 Aug 2024**. Minification is done in WordPress (Milestone II).
+
+**Lock the origin to Cloudflare (Azure NSG).** With the proxy on, every real visitor reaches the VM through Cloudflare, so ports 80 and 443 only need to accept Cloudflare's addresses. Left open, anyone who finds the origin IP can skip Cloudflare's TLS, caching and DDoS protection. Port 22 stays as it is (key-only login).
+
+*Done 29 Sep 2026: in `kpg-web-nsg`, the **HTTP** (priority 300) and **HTTPS** (320) rules went from Source "Any" to Cloudflare's 15 IPv4 ranges. SSH (340) is unchanged. IPv6 ranges aren't needed because Cloudflare reaches the origin only through the IPv4 `A` record.*
+
+1. Get the current list from https://www.cloudflare.com/ips-v4 (the same list is served at `https://api.cloudflare.com/client/v4/ips`). On 29 Sep 2026 it was:
+   ```
+   173.245.48.0/20,103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,141.101.64.0/18,108.162.192.0/18,190.93.240.0/20,188.114.96.0/20,197.234.240.0/22,198.41.128.0/17,162.158.0.0/15,104.16.0.0/13,104.24.0.0/14,172.64.0.0/13,131.0.72.0/22
+   ```
+2. Azure portal → Network security groups → `kpg-web-nsg` → Settings → **Inbound security rules** → **HTTP** → Source: **IP Addresses** → paste the comma-separated list into *Source IP addresses/CIDR ranges* → **Save**. Repeat for **HTTPS**. Screenshot the rules list before and after.
+3. Verify from your laptop, which is not a Cloudflare IP:
+   ```bash
+   # laptop: straight to the origin. Must fail to connect now (before the change: 301 on port 80, 200 on 443)
+   curl -sk --connect-timeout 10 -o /dev/null -w '%{http_code}\n' --resolve knowledgeparkguide.in:443:<IP> https://knowledgeparkguide.in/
+   # laptop: through Cloudflare. Must still be 200, and cf-cache-status: DYNAMIC shows it was fetched from the origin
+   curl -sI https://knowledgeparkguide.in/ | grep -iE '^(HTTP|server|cf-cache-status)'
+   ```
+   Result on 29 Sep 2026: direct to the origin, ports 80 and 443 got no connection within 10 s. Through Cloudflare the site returned 200. SSH on port 22 still answered.
+4. Cloudflare changes these ranges rarely. When it does, any edge server using a new range can't reach the origin. Re-check the list every few months and update both rules.
+
+- *Not yet:* Nginx now sees every request as coming from a Cloudflare IP. Logging real visitor IPs needs `set_real_ip_from` for each range plus `real_ip_header CF-Connecting-IP;` (Milestone II).
 
 ## F. Verify + capture evidence
 
