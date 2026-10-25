@@ -19,7 +19,7 @@
   },
   {
    "question": "Does Bennett University run a shuttle to the metro station?",
-   "answer": "Not a regular one from the stations near campus. Bennett's paid, semester-pass buses for day scholars pick up at stations such as Sector 51, NSEZ and Sector 148, not at Pari Chowk or Depot. A Bennett web page mentions weekend shuttles to the closest metro station, so check with the transport office whether one is running."
+   "answer": "Not on weekdays: Bennett's transport office doesn't run a weekday shuttle to the metro (checked October 2026). Its paid, semester-pass buses for day scholars pick up at stations such as Sector 51, NSEZ and Sector 148, not at Pari Chowk or Depot. A Bennett web page mentions weekend shuttles to the closest metro station, so call the transport office on +91 93199 93116 before relying on one."
   },
   {
    "question": "How do I reach Bennett University from Delhi by metro?",
@@ -32,6 +32,7 @@
  ],
  "sources": [
   "Author field data (Uttkarsh Thakur, Bennett University hostel resident), 26 Sep 2026: Pari Chowk use, auto ₹150-200 (don't pay over ₹200, higher around holidays), Uber/Rapido ₹150-250, 20-25 min, no shuttle, late-night autos",
+  "Author field check, Sunday 25 Oct 2026: Bennett transport office (no weekday metro shuttle); Uber quotes to Bennett University from New Delhi Railway Station (Go AC ₹732, Go Sedan ₹842, UberXL ₹1,266, about 1.5 h) and Delhi airport (Go AC ₹1,582, Premier AC ₹1,979, UberXL ₹2,908, about 2 h); photos of autos at Pari Chowk Gate 1",
   "OpenStreetMap + OSRM car routing, 26 Sep 2026 (Bennett campus 28.4506, 77.5838 to Depot, GNIDA Office, Delta 1, Pari Chowk)",
   "https://www.nmrcnoida.com/Passenger-Information/Metro-Rail/Fare-Table",
   "https://www.nmrcnoida.com/Passenger-Information/Metro-Rail/Train-Timings",
@@ -53,7 +54,15 @@
   "https://metrorailnews.in/noida-metro-ridership-surge-sector-51-52-skywalk/",
   "https://www.socialnews.xyz/2026/08/28/noida-skywalk-connecting-metro-stations-opens-gallery/",
   "https://www.nobroker.in/blog/blue-line-delhi-metro/",
-  "https://www.mappls.com/place-bennett+university-noida-plot+no+8-11-tech+zone+2-greater+noida-uttar+pradesh-201312-0k2xd2"
+  "https://www.mappls.com/place-bennett+university-noida-plot+no+8-11-tech+zone+2-greater+noida-uttar+pradesh-201312-0k2xd2",
+  "https://www.bennett.edu.in/bennett-life/student-services/transportation-facility/",
+  "https://www.bennett.edu.in/student-services/transportation-facilities/",
+  "https://www.bennett.edu.in/wp-content/uploads/2024/07/Student_-Transport-Policy.pdf",
+  "https://www.bennett.edu.in/media-center/blog/plan-visit-bennett-university/",
+  "SERP study 26 Sep 2026 (research/SERP-COMPETITOR.md), older pages still ranking:",
+  "https://ictiee.org/ictiee2018/greater-noida/",
+  "https://icmlds.com/icmlds2017/travelguide",
+  "https://collegewollege.com/university/bennett-university-c10102/accessibility"
  ],
  "category": "getting-here"
 }
