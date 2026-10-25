@@ -8,16 +8,18 @@ wp_set_current_user( $admins[0] ); // run as an admin so saves behave like the d
 
 $data = json_decode( file_get_contents( '/tmp/kpg-content.json' ), true );
 
+// wp_insert_post() and wp_update_term() unslash their input, so it is slashed first. Without this, backslash
+// escapes such as & in the FAQ block's attributes lose their backslash and "&" shows up as "u0026".
 foreach ( $data['pages'] ?? [] as $p ) {
 	$existing = get_page_by_path( $p['slug'] );
-	$id = wp_insert_post( [
+	$id = wp_insert_post( wp_slash( [
 		'ID'           => $existing ? $existing->ID : 0,
 		'post_type'    => 'page',
 		'post_status'  => 'publish',
 		'post_name'    => $p['slug'],
 		'post_title'   => $p['title'],
 		'post_content' => $p['content'],
-	], true );
+	] ), true );
 	if ( is_wp_error( $id ) ) { echo "page {$p['slug']}: " . $id->get_error_message() . "\n"; continue; }
 	update_post_meta( $id, 'rank_math_title', $p['meta_title'] );
 	update_post_meta( $id, 'rank_math_description', $p['meta_description'] );
@@ -28,7 +30,7 @@ foreach ( $data['pages'] ?? [] as $p ) {
 foreach ( $data['posts'] ?? [] as $p ) {
 	$existing = get_posts( [ 'name' => $p['slug'], 'post_type' => 'post', 'post_status' => 'any', 'numberposts' => 1 ] );
 	$cat = get_term_by( 'slug', $p['category'], 'category' );
-	$id = wp_insert_post( [
+	$id = wp_insert_post( wp_slash( [
 		'ID'            => $existing ? $existing[0]->ID : 0,
 		'post_type'     => 'post',
 		'post_status'   => $p['status'], // 'draft' until the author approves, then 'publish'
@@ -37,7 +39,7 @@ foreach ( $data['posts'] ?? [] as $p ) {
 		'post_excerpt'  => $p['excerpt'],
 		'post_content'  => $p['content'],
 		'post_category' => $cat ? [ $cat->term_id ] : [],
-	], true );
+	] ), true );
 	if ( is_wp_error( $id ) ) { echo "post {$p['slug']}: " . $id->get_error_message() . "\n"; continue; }
 	update_post_meta( $id, 'rank_math_title', $p['meta_title'] );
 	update_post_meta( $id, 'rank_math_description', $p['meta_description'] );
@@ -48,7 +50,7 @@ foreach ( $data['posts'] ?? [] as $p ) {
 foreach ( $data['categories'] ?? [] as $c ) {
 	$term = get_term_by( 'slug', $c['slug'], 'category' );
 	if ( ! $term ) { echo "category {$c['slug']}: not found\n"; continue; }
-	wp_update_term( $term->term_id, 'category', [ 'description' => $c['content'] ] );
+	wp_update_term( $term->term_id, 'category', wp_slash( [ 'description' => $c['content'] ] ) );
 	update_term_meta( $term->term_id, 'rank_math_title', $c['meta_title'] );
 	update_term_meta( $term->term_id, 'rank_math_description', $c['meta_description'] );
 	update_term_meta( $term->term_id, 'rank_math_focus_keyword', $c['focus_keyword'] );

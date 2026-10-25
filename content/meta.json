@@ -46,6 +46,14 @@
    "https://www.business-standard.com/article/pti-stories/noida-gr-noida-metro-inaugurated-opens-for-public-saturday-119012500839_1.html"
   ]
  },
+ "guides": {
+  "kind": "page",
+  "title": "Guides",
+  "focus_keyword": "",
+  "meta_title": "All Guides: Knowledge Park and Greater Noida for Students",
+  "meta_description": "Every Knowledge Park Guide article in one place: getting here, where to stay, food, things to do and student life in Greater Noida, each fact dated.",
+  "sources": []
+ },
  "getting-here": {
   "kind": "category",
   "title": "Getting Here",
@@ -57,8 +65,7 @@
    "https://en.wikipedia.org/wiki/List_of_Noida_Metro_stations",
    "https://en.wikipedia.org/wiki/Knowledge_Park_II_metro_station",
    "https://en.wikipedia.org/wiki/Pari_Chowk_metro_station",
-   "https://themetrorailguy.com/noida-metro-information-map-updates/",
-   "<local path>"
+   "https://themetrorailguy.com/noida-metro-information-map-updates/"
   ]
  },
  "stay": {
@@ -67,10 +74,7 @@
   "focus_keyword": "pg in knowledge park greater noida",
   "meta_title": "PG in Knowledge Park, Greater Noida: A Student Guide",
   "meta_description": "Looking for a PG in Knowledge Park, Greater Noida? Sharing types, food, deposits, in-time rules and distance to your college gate, with dated rent figures.",
-  "sources": [
-   "<local path>",
-   "<local path>"
-  ]
+  "sources": []
  },
  "eat": {
   "kind": "category",
@@ -78,10 +82,7 @@
   "focus_keyword": "restaurant near knowledge park",
   "meta_title": "Finding a Restaurant Near Knowledge Park, Greater Noida",
   "meta_description": "Need a restaurant near Knowledge Park, Greater Noida? Guides with price for two, veg or non-veg, closing time and hostel delivery, all date-checked.",
-  "sources": [
-   "<local path>",
-   "<local path>"
-  ]
+  "sources": []
  },
  "explore": {
   "kind": "category",
