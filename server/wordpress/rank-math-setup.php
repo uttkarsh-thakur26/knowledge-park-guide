@@ -12,6 +12,9 @@ $titles = get_option( 'rank-math-options-titles' );
 $titles['knowledgegraph_type']          = 'company'; // Organization schema: "Knowledge Park Guide"
 $titles['title_separator']              = '|';
 $titles['pt_page_default_rich_snippet'] = 'off';     // pages (Home, About) get WebPage, not Article
+// Share image for pages without a featured image: the Pari Chowk Gate 1 photo (attachment 20).
+$titles['open_graph_image_id'] = 20;
+$titles['open_graph_image']    = wp_get_attachment_image_url( 20, 'full' );
 update_option( 'rank-math-options-titles', $titles );
 
 // Keep only what this site uses; the 404 monitor + redirections feed the Milestone II audit.

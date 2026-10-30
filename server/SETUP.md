@@ -234,3 +234,27 @@ Screenshots:
 2. **Google Search Console:** Domain property → verify via **DNS TXT** (add it in Cloudflare DNS) → screenshot.
 3. **GA4:** create a property + web data stream, then deploy the tag with the must-use plugin `server/wordpress/mu-plugins/kpg-ga4.php`.
 4. Settings → Permalinks → Custom structure **`/%category%/%postname%/`**. Set this **before publishing anything**, because changing URLs after Google indexes them costs rankings.
+
+## H. Hardening (30 Oct 2026)
+
+*Done 30 Oct 2026 after a full audit of the live site.*
+
+- **Nginx:** `server/nginx/knowledgeparkguide.in.conf` and `server/nginx/conf.d/kpg.conf` (copied to `/etc/nginx/conf.d/`). The previous site config is backed up in `/etc/nginx/kpg-backup/`.
+  - Visitor IPs come from Cloudflare's `CF-Connecting-IP` header, trusted only from Cloudflare's published ranges. Re-check them at https://www.cloudflare.com/ips/ now and then.
+  - `/wp-login.php` allows 10 requests a minute per visitor (burst 5); more get HTTP 429.
+  - Security headers: HSTS (180 days), nosniff, SAMEORIGIN framing, a strict referrer policy and a permissions policy.
+  - `readme.html`, `license.txt` and `wp-config-sample.php` are denied, `server_tokens off` hides the Nginx version, and `www` over HTTP goes straight to the apex.
+- **WordPress must-use plugins:**
+  - `kpg-hardening.php` hides the users REST endpoint from visitors, returns 404 for `?author=N`, removes the version tag, turns off application passwords and XML-RPC, and gives one generic login error.
+  - `kpg-seo.php` noindexes any hub with no published posts; indexing comes back by itself once the hub has a post.
+- **Author URL:** the public author slug must never equal the admin username, because the slug appears in every post's schema. It is `uttkarsh-thakur`.
+- **SSH:** keys only (no passwords, no root password login). `fail2ban` bans an IP for a day after 5 failures in 10 minutes (`/etc/fail2ban/jail.d/kpg-sshd.local`).
+- **Owner's own steps:**
+  - Use a long, unique WordPress password.
+  - Turn on two-factor login for the admin account.
+  - Keep the account count at one admin.
+
+Quick re-check from any machine:
+```bash
+curl -sI https://knowledgeparkguide.in/ | grep -iE "strict-transport|x-frame|nosniff"
+```
