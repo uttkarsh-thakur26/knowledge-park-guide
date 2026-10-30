@@ -124,3 +124,19 @@ add_action(
 		register_block_type( 'kpg/related', array( 'render_callback' => 'kpg_render_related' ) );
 	}
 );
+
+/**
+ * Rank Math's FAQ block prints every answer open. Turn each question into a closed <details>
+ * so long FAQs are easy to scan, like the homepage questions. The FAQPage schema is built
+ * from the block's attributes, so it is unchanged.
+ */
+add_filter(
+	'render_block_rank-math/faq-block',
+	function ( $html ) {
+		return preg_replace(
+			'#<div id="(faq-question-\d+)" class="rank-math-list-item">\s*<h3 class="rank-math-question\s*">(.*?)</h3>\s*<div class="rank-math-answer\s*">(.*?)</div>\s*</div>#s',
+			'<details id="$1" class="rank-math-list-item kpg-faq"><summary><h3 class="rank-math-question">$2</h3></summary><div class="rank-math-answer">$3</div></details>',
+			$html
+		);
+	}
+);
