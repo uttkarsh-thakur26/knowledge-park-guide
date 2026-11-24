@@ -258,3 +258,19 @@ Quick re-check from any machine:
 ```bash
 curl -sI https://knowledgeparkguide.in/ | grep -iE "strict-transport|x-frame|nosniff"
 ```
+
+## I. Speed and caching (24 Nov 2026)
+
+- **Page cache:** WP Super Cache in simple mode.
+  ```bash
+  cd /var/www/knowledgeparkguide.in
+  sudo -u www-data wp plugin install wp-super-cache --activate
+  ```
+  Then set `$cache_enabled = true`, `$super_cache_enabled = true` and `$wp_cache_not_logged_in = 2` (logged-in visitors are never cached) in `wp-content/wp-cache-config.php`, and make sure `WP_CACHE` is `true` in `wp-config.php`. Cached pages live in `wp-content/cache/supercache/`. Origin response time for the homepage dropped from about 0.93 s to 0.02 s.
+- **Edge cache (Cloudflare Cache Rule):** Caching → Cache Rules, one rule:
+  - When: method is `GET`, the query string is empty, the path does not start with `/wp-admin`, `/wp-login.php`, `/wp-json` or `/wp-cron.php`, and the `Cookie` header contains none of `wordpress_logged_in`, `wordpress_sec`, `wp-postpass` or `comment_author`.
+  - Then: eligible for cache, edge TTL 2 hours (ignore the origin's headers), browser TTL bypass.
+  - Check: `curl -sI https://knowledgeparkguide.in/ | grep -i cf-cache-status` shows `MISS` then `HIT`; `/wp-login.php` and `/?s=test` show `DYNAMIC`.
+- **After publishing or editing a page:** purge Cloudflare with **Purge Everything**. Purging the single URL left the old copy cached on 24 Nov.
+- **Must-use plugin `kpg-performance.php`:** removes the emoji script and styles, which the site doesn't use.
+- **GA4 custom event:** `kpg-ga4.php` also sends `faq_open` (parameters `faq_question` and `page_path`) when a reader opens an FAQ question.
