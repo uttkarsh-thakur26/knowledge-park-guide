@@ -1,0 +1,20 @@
+# Knowledge Park Guide
+
+> An independent student guide to Knowledge Park, Greater Noida (Uttar Pradesh, India): metro routes and fares to the universities around it, and official contacts for the colleges in Knowledge Park II and III. Written by a final-year Bennett University student. Fares, distances and timings come from official sources such as NMRC or from the author's own trips, and fare tables show when they were last checked.
+
+Knowledge Park is in Greater Noida, not Greater Noida West. Bennett University (Tech Zone II) and Galgotias University (Yamuna Expressway) are near Knowledge Park, not inside it.
+
+## Guides
+
+- [Bennett University nearest metro station](https://knowledgeparkguide.in/getting-here/bennett-university-nearest-metro-station/): Depot is the nearest Aqua Line station, but most students use Pari Chowk, 11 km away. Auto and cab fares, buses and the route from Delhi.
+- [Nearest metro station for Galgotias, Sharda and GL Bajaj](https://knowledgeparkguide.in/getting-here/nearest-metro-station-galgotias-sharda-gl-bajaj/): no metro is within walking distance of Galgotias University; Sharda and GL Bajaj are 2.5-3 km from the metro.
+- [Colleges in Knowledge Park, Greater Noida](https://knowledgeparkguide.in/living/colleges-in-knowledge-park-greater-noida/): 22 colleges and institutes in Knowledge Park II and III with official admission and office contacts, and the walk from Knowledge Park II metro.
+
+## Sections
+
+- [Getting here](https://knowledgeparkguide.in/getting-here/): metro, auto, e-rickshaw and bus routes to Knowledge Park and nearby campuses.
+- [Living](https://knowledgeparkguide.in/living/): college contacts and practical information for students living in Greater Noida.
+
+## About
+
+- [About Knowledge Park Guide](https://knowledgeparkguide.in/about/): who writes the guide, how facts are checked and how to report an error.

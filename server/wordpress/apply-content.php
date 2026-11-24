@@ -30,8 +30,12 @@ foreach ( $data['pages'] ?? [] as $p ) {
 foreach ( $data['posts'] ?? [] as $p ) {
 	$existing = get_posts( [ 'name' => $p['slug'], 'post_type' => 'post', 'post_status' => 'any', 'numberposts' => 1 ] );
 	$cat = get_term_by( 'slug', $p['category'], 'category' );
+	// Keep the original publish date when updating a published post; wp_insert_post() would reset it to now.
+	$keep_date = $existing && 'publish' === $existing[0]->post_status;
 	$id = wp_insert_post( wp_slash( [
 		'ID'            => $existing ? $existing[0]->ID : 0,
+		'post_date'     => $keep_date ? $existing[0]->post_date : '',
+		'post_date_gmt' => $keep_date ? $existing[0]->post_date_gmt : '',
 		'post_type'     => 'post',
 		'post_status'   => $p['status'], // 'draft' until the author approves, then 'publish'
 		'post_name'     => $p['slug'],

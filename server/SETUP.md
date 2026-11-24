@@ -274,3 +274,10 @@ curl -sI https://knowledgeparkguide.in/ | grep -iE "strict-transport|x-frame|nos
 - **After publishing or editing a page:** purge Cloudflare with **Purge Everything**. Purging the single URL left the old copy cached on 24 Nov.
 - **Must-use plugin `kpg-performance.php`:** removes the emoji script and styles, which the site doesn't use.
 - **GA4 custom event:** `kpg-ga4.php` also sends `faq_open` (parameters `faq_question` and `page_path`) when a reader opens an FAQ question.
+
+## J. Audit fixes and backups (24 Nov 2026)
+
+- **College emails:** Cloudflare's Email Address Obfuscation rewrites `mailto:` links into `/cdn-cgi/l/email-protection` links, which site auditors report as broken (404). The colleges guide wraps its body in `<!--email_off-->` … `<!--/email_off-->` so its official contact emails stay plain links.
+- **`/llms.txt`:** a plain-text summary of the site and its guides for AI search tools. Source: `content/llms.txt`. Deploy: `sudo install -o www-data -g www-data -m 644 llms.txt /var/www/knowledgeparkguide.in/llms.txt`.
+- **Publish dates:** `apply-content.php` keeps the original publish date when it updates a published guide; before this fix every republish reset the date to "now".
+- **UpdraftPlus:** `wp plugin install updraftplus --activate`, then `wp option update updraft_service '["googledrive"]' --format=json`. The owner connects Google Drive from Settings → UpdraftPlus Backups → Settings and runs the first backup. Archives wait in `wp-content/updraft/` until they upload, so nginx denies that folder (`location ^~ /wp-content/updraft/ { deny all; }`). Check: `curl -s -o /dev/null -w '%{http_code}' https://knowledgeparkguide.in/wp-content/updraft/` returns `403`.
